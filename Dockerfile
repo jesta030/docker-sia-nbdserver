@@ -20,6 +20,7 @@ COPY            --from=build /go/bin /
 VOLUME          /data /cache
 
 COPY            start.sh /
+RUN		chmod 700 /start.sh
 
 ENV             SIA_API_ADDRESS="127.0.0.1:9980"
 ENV             SIA_PASSWORD_FILE="/data/apipassword"
@@ -28,4 +29,4 @@ ENV             XDG_DATA_HOME="/cache"
 
 EXPOSE          10809/tcp
 
-ENTRYPOINT      ["./start.sh"]
+ENTRYPOINT      ["/start.sh"]
