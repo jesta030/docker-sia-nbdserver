@@ -7,7 +7,7 @@ WORKDIR         /tmp
 
 RUN             git clone https://github.com/javgh/sia-nbdserver.git && \
                 cd sia-nbdserver && \
-                git branch remotes/origin/tcp && \
+                git checkout remotes/origin/tcp && \
                 go install
 
 
@@ -19,14 +19,14 @@ COPY            --from=build /go/bin /
 
 VOLUME          /data /cache
 
-COPY            start.sh /
-RUN		chmod 700 /start.sh
-
 ENV             SIA_API_ADDRESS="127.0.0.1:9980"
 ENV             SIA_PASSWORD_FILE="/data/apipassword"
-ENV             SERVER_ADDRESS="127.0.0.1:10809"
+
 ENV             XDG_DATA_HOME="/cache"
 
 EXPOSE          10809/tcp
 
-ENTRYPOINT      ["/start.sh"]
+ENTRYPOINT      /sia-nbdserver \
+                --sia-daemon $SIA_API_ADDRESS \
+                --sia-password-file $SIA_PASSWORD_FILE \
+                -u 0.0.0.0:10809
