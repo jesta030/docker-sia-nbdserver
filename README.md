@@ -14,14 +14,14 @@ Use at your own risk! You could loose your data or spend a lot of siacoin using 
 
 <pre><code>docker run -d \
     --name sia-nbdserver \
-    --network 
-    -p 10809:10809 \
+    --network \
     -e SIA_API_ADDRESS= \
-    -v /path/one:/cache \
-    -v /path/two:/data \
-    sia-nbdserver</code></pre>
+    -p 10809:10809 \
+    -v /path/to/cache:/cache \
+    -v /path/to/data:/data \
+    jesta030/sia-nbdserver</code></pre>
 
-<ul><li><b>--network:</b> Not technically necessary but I recommend running siad and sia-nbdserver in the same docker network to avoid publishing sia's API port.
+<ul><li><b>--network:</b> I recommend running sia-nbdserver and siad as separate containers on the same docker network. This way you don't need to expose siad's API port 
 <li><b>-e SIA_API_ADDRESS:</b> Address and Port of the sia API.
 <li><b>-v /path/one:/cache:</b> Volume for caching to disk. If omitted cache is stored in memory only!
 <li><b>-v /path/two:/data:</b> This volume needs to contain a file called "apipassword" that contains sia's API password. This file needs to be well protected (<code>chmod 600</code>).</ul>
