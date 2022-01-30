@@ -1,8 +1,8 @@
 <h1>A Network block device server using the sia storage network as backend</h1>
 
-<p><b>All credits for the original app go to javgh. Visit their Github for more in-depth information: <a href="https://github.com/javgh/sia-nbdserver">https://github.com/javgh/sia-nbdserver</a></br>
-Use at your own risk! You could loose your data or spend a lot of siacoin using this!</b></p>
-<p>This container will run an nbd-server that listens on port 10809 for connections from an nbd-client essentially mounting files stored on the sia storage network locally. It writes data in page files that are pushed to sia when they become inactive. This happends transparently so the stored files are available regardless whether they are still cached locally or already uploaded to sia.</p>
+<p><b>All credits for the original app go to javgh. Visit their Github for more in-depth information: <a href="https://github.com/javgh/sia-nbdserver">https://github.com/javgh/sia-nbdserver</a></b></p>
+<p><b>Use at your own risk! You could loose your data or spend a lot of siacoin using this!</b></p>
+<p>This container will run an nbd-server that listens on port 10809 for connections from an nbd-client essentially mounting files stored on the sia storage network locally. It writes data in page files that are later pushed to sia when they become inactive. This happens transparently so the stored files are available regardless whether they are still cached locally or already uploaded to sia.</p>
 
 <h3>Requirements</h3>
 
@@ -53,7 +53,7 @@ Use at your own risk! You could loose your data or spend a lot of siacoin using 
   </tr>
 </table>
 
-A word about security: Don't expose sia's API port. And especially don't run sia with --disable-API-security. There are two ways of securely communicating with sia's API: use docker-compose to run botch sia and sia-nbdserver in one container or put both containers on the same docker network without exposing sia's API port.
+<p>A word about security: Don't expose sia's API port. And especially don't run sia with <code>--disable-API-security</code>. There are two ways of securely communicating with sia's API: use docker-compose to run both sia and sia-nbdserver in one container or put both containers on the same docker network without exposing sia's API port.</p>
 
 <h3>Host</h3>
 
