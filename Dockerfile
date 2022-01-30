@@ -11,7 +11,6 @@ RUN             git clone https://github.com/javgh/sia-nbdserver.git && \
                 go install
 
 
-
 # Build final image
 FROM            alpine:latest
 
@@ -21,6 +20,11 @@ VOLUME          /data /cache
 
 ENV             SIA_API_ADDRESS="127.0.0.1:9980"
 ENV             SIA_PASSWORD_FILE="/data/apipassword"
+ENV             PAGE_LIMIT_HARD="128"
+ENV             PAGE_LIMIT_SOFT="96"
+ENV             PAGE_IDLE="120"
+ENV             DEV_SIZE="1099511627776"
+
 
 ENV             XDG_DATA_HOME="/cache"
 
