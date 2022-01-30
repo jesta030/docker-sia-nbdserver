@@ -29,4 +29,8 @@ EXPOSE          10809/tcp
 ENTRYPOINT      /sia-nbdserver \
                 --sia-daemon $SIA_API_ADDRESS \
                 --sia-password-file $SIA_PASSWORD_FILE \
-                -u 0.0.0.0:10809
+                -u 0.0.0.0:10809 \
+                -H $PAGE_LIMIT_HARD \
+                -S $PAGE_LIMIT_SOFT \
+                -i $PAGE_IDLE \
+                -s $DEV_SIZE
