@@ -57,10 +57,10 @@
 
 <h3>Host</h3>
 
-<ul><li>Load the nbd kernel module: <code>modprobe nbd</code>
-<li>Connect: <code>nbd-client -b 4096 -t 3600 $SERVER_ADDRESS $DEVICE</code> where $SERVER_ADDRESS is the sia-nbdserver's address and port and $DEVICE is an available nbd device like /dev/nbd0
-<li>Create file system: <code>mkfs.xfs $DEVICE</code> 
-<li>Mount $DEVICE at $PATH: <code>mount -o sync $DEVICE $PATH</code></ul>
+<ul><li><code>$ modprobe nbd</code> - Load the nbd kernel module.
+<li><code>$ nbd-client -b 4096 -t 3600 $SERVER_ADDRESS $DEVICE</code> - Connect to the nbd-server where $SERVER_ADDRESS is the server's address and port and $DEVICE is an available nbd device like /dev/nbd0.
+<li><code>mkfs.xfs $DEVICE</code> - Create file system (XFS in this case). 
+<li><code>mount -o sync $DEVICE $PATH</code> - Mount $DEVICE at $PATH.</ul>
 
 <h3>Limitations</h3>
 
